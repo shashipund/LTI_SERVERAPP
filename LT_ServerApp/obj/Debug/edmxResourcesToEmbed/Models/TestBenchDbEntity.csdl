@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LT_SERVER_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="MenuID" Type="Int32" Nullable="false" />
+    <Property Name="MenuName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleID" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="LT_SERVER_DBModel.FK_Menu_Role" FromRole="Menu" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Priority">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="PriorityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Frequency" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="Binary" MaxLength="50" FixedLength="false" />
+    <Property Name="MenuID" Type="Int32" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+    <NavigationProperty Name="Menus" Relationship="LT_SERVER_DBModel.FK_Menu_Role" FromRole="Role" ToRole="Menu" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TablePriority">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="TestBenchID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PriorityID" Type="Int32" />
+    <NavigationProperty Name="TablePriority1" Relationship="Self.FK_TablePriority_TablePriority" FromRole="TablePriority" ToRole="TablePriority1" />
+    <NavigationProperty Name="TablePriority2" Relationship="Self.FK_TablePriority_TablePriority" FromRole="TablePriority1" ToRole="TablePriority" />
+  </EntityType>
+  <EntityType Name="TestBenchDetail">
+    <Key>
+      <PropertyRef Name="TestBenchID" />
+    </Key>
+    <Property Name="TestBenchID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TestBenchName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DBName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IPAddress" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="DBUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DBPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PortNo" Type="Int32" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RoleID" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TablePriority_TablePriority">
+    <End Role="TablePriority" Type="Self.TablePriority" Multiplicity="1" />
+    <End Role="TablePriority1" Type="Self.TablePriority" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TablePriority">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TablePriority1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LT_SERVER_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Menus" EntityType="Self.Menu" />
+    <EntitySet Name="Priorities" EntityType="Self.Priority" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TablePriorities" EntityType="Self.TablePriority" />
+    <EntitySet Name="TestBenchDetails" EntityType="Self.TestBenchDetail" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TablePriority_TablePriority" Association="Self.FK_TablePriority_TablePriority">
+      <End Role="TablePriority" EntitySet="TablePriorities" />
+      <End Role="TablePriority1" EntitySet="TablePriorities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_Role" Association="LT_SERVER_DBModel.FK_Menu_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Menu" EntitySet="Menus" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_Menu_Role">
+    <End Type="LT_SERVER_DBModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="LT_SERVER_DBModel.Menu" Role="Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="Menu">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
