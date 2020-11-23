@@ -50,7 +50,7 @@ namespace LT_ServerApp.Controllers
         public string GetTables(TestBenchDetail testBenchTable)
         {
             DataTable dt = new DataTable();
-            dt = _service.CheckConnection(testBenchTable);
+            dt = _service.GetTestBenchTable(testBenchTable);
 
             return JsonConvert.SerializeObject(dt);
         }
@@ -62,42 +62,6 @@ namespace LT_ServerApp.Controllers
             JSONResult result = _service.AddTablePriority(tablePriority);
             return JsonConvert.SerializeObject(result);
         }
-        // POST: TestBench/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: TestBench/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: TestBench/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
     }
 }

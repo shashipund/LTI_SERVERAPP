@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     var TestBenchDetail = {};
-    var BenchID="";
+    var BenchID = "";
     var tableList = "";
     $('#btnGetTestBenchDetails').hide();
     GetTestBenchList();
@@ -108,9 +108,9 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (data) {
-                            
+
                             $.each(data, function (i, item) {
-                                priorityList =priorityList + "<option value="+item.ID+">"+item.PriorityName+"</option>";
+                                priorityList = priorityList + "<option value=" + item.ID + ">" + item.PriorityName + "</option>";
                             });
                             var select = "";
                             for (var i = 0; i < length; i++) {
@@ -118,7 +118,7 @@
                                     "<option value='0'>Select Frequency</option>" +
                                     priorityList +
                                     "</select>";
-                               
+
                             }
                             $('#dropDownList').append(select);
                         }, //End of AJAX Success function  
@@ -127,7 +127,7 @@
                         } //End of AJAX error function  
 
                     });
-                    
+
                 }
             },
             error: function (error) {
@@ -139,19 +139,24 @@
     $('#btnTableSave').click(function () {
         var len = $("#tableList").find("li").length;
         var testBenchTable = [];
-        
+        var priorityID = "";
         for (var i = 0; i < len; i++) {
             var tableObject = {};
+
+            //if ($('#drpFrequency_' + i).val() == "0")
+            //{
+            //    alert("Select Frequency for Table !");
+            //    return;
+            //}
+
+            priorityID = $('#drpFrequency_' + i).val();
+            if (priorityID != "0") {
                 tableObject.TestBenchID = BenchID;
                 tableObject.TableName = tableList[i]["TABLE_NAME"];
-                if ($('#drpFrequency_' + i).val() == "0")
-                {
-                    alert("Select Frequency for Table !");
-                    return;
-                }
-                tableObject.PriorityID = $('#drpFrequency_' + i).val();
-            
+                tableObject.PriorityID = priorityID;
                 testBenchTable.push(tableObject);
+            }
+
         }
 
         $.ajax({

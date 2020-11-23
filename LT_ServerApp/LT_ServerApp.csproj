@@ -311,6 +311,7 @@
     <Content Include="Views\User\Users.cshtml" />
     <Content Include="Views\TestBench\TestBench.cshtml" />
     <Content Include="Views\Restore\Restore.cshtml" />
+    <None Include="Properties\PublishProfiles\LTI_WebApp.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

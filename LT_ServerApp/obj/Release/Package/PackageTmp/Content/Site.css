@@ -1,0 +1,106 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Set padding to display errors that occur during databinding */
+.padding-error {
+    padding-top: 20px;
+
+}
+
+label{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    color:GrayText;
+}
+
+.btn{
+    border-radius:unset;
+}
+
+.form-control{
+    border-radius:unset !important;
+}
+/*Custome CSS */
+
+#main-container{
+    margin-top:30px;
+    border:1px solid black;
+    min-height:500px;
+    padding:20px;
+}
+.box-hg-250px {
+    width:30%;
+    height:130px;
+    margin:1%;
+    border: 1px solid #3498DB;
+    padding:10px;
+}
+
+.dash-img-pro{
+    width: 75px; 
+    float: left; 
+    margin:5px 10px;
+}
+
+.modal-header{
+    background-color:#3498DB;
+    color:white;
+}
+
+.modal{
+    top:60px;
+    border-radius:unset;
+}
+
+.labelHeader{
+    padding:6px 10px; 
+    background-color:#73C6B6;
+    height:30px;
+    color:white;
+}
+
+.modal-left{
+    float:left;
+    width:58%;
+    padding:1%;
+    height:auto;
+    
+}
+.modal-right{
+    float:left;
+    width:38%;
+    padding:1%;
+    height:auto;
+}
+
+.mg-btm-20{
+    margin-bottom:20px;
+}
+@media only screen and (max-width: 767px) {
+    .nofloat {
+        float: none;
+        padding: 10px 15px;
+    }
+}

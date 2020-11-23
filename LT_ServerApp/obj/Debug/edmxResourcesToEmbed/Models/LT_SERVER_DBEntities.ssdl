@@ -90,6 +90,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="CreateTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="query" Type="varchar(max)" Mode="In" />
+    <Parameter Name="tableName" Type="varchar" Mode="In" />
+  </Function>
   <EntityContainer Name="LT_SERVER_DBModelStoreContainer">
     <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Priority" EntityType="Self.Priority" Schema="dbo" store:Type="Tables" />

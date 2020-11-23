@@ -95,6 +95,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="CreateTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="query" Type="varchar(max)" Mode="In" />
+          <Parameter Name="tableName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CreateType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="query" Type="varchar(max)" Mode="In" />
+          <Parameter Name="tableName" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="LT_SERVER_DBModelStoreContainer">
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Priority" EntityType="Self.Priority" Schema="dbo" store:Type="Tables" />
@@ -198,6 +206,22 @@
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <EntitySet Name="TestBenchDetails" EntityType="LT_SERVER_DBModel.TestBenchDetail" />
+          <FunctionImport Name="CreateTable">
+            <Parameter Name="query" Mode="In" Type="String" />
+            <Parameter Name="tableName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CreateTable1">
+            <Parameter Name="query" Mode="In" Type="String" />
+            <Parameter Name="tableName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CreateType">
+            <Parameter Name="query" Mode="In" Type="String" />
+            <Parameter Name="tableName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CreateType1">
+            <Parameter Name="query" Mode="In" Type="String" />
+            <Parameter Name="tableName" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Role">
           <Key>
@@ -324,6 +348,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CreateTable" FunctionName="LT_SERVER_DBModel.Store.CreateTable" />
+          <FunctionImportMapping FunctionImportName="CreateTable1" FunctionName="LT_SERVER_DBModel.Store.CreateTable" />
+          <FunctionImportMapping FunctionImportName="CreateType" FunctionName="LT_SERVER_DBModel.Store.CreateType" />
+          <FunctionImportMapping FunctionImportName="CreateType1" FunctionName="LT_SERVER_DBModel.Store.CreateType" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

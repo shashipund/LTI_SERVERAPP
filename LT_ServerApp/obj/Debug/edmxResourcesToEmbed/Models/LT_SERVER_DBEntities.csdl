@@ -82,6 +82,14 @@
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
     <EntitySet Name="TestBenchDetails" EntityType="LT_SERVER_DBModel.TestBenchDetail" />
+    <FunctionImport Name="CreateTable">
+      <Parameter Name="query" Mode="In" Type="String" />
+      <Parameter Name="tableName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CreateTable1">
+      <Parameter Name="query" Mode="In" Type="String" />
+      <Parameter Name="tableName" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="Role">
     <Key>

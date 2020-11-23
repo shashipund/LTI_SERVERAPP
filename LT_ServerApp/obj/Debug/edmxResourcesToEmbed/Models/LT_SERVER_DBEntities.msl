@@ -74,5 +74,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CreateTable" FunctionName="LT_SERVER_DBModel.Store.CreateTable" />
+    <FunctionImportMapping FunctionImportName="CreateTable1" FunctionName="LT_SERVER_DBModel.Store.CreateTable" />
   </EntityContainerMapping>
 </Mapping>
