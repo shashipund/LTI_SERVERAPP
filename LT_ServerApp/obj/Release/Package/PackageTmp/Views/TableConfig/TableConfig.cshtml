@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="main-container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>TABLE CONFIGURATION</h4><hr />
+        </div>
+        <div class="modal-left">
+            <div class="panel panel-info">
+                <div class="panel-heading">Table List</div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <label for="drpTestBench">Select Test Bench<code>*</code></label> <br />
+                        <select id="drpTestBench" name="SelectTestBench" class="form-control">
+                        </select>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button type="submit" id="btnGetTestBenchDetails" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-floppy-disk"></span> Get Table Details</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-right">
+            <div class="panel panel-info">
+                <div class="panel-heading">Table List</div>
+                <div class="panel-body" >
+                    <div class="col-md-6">
+                        <ul id="tableList"></ul>
+                    </div>
+                    <div class="col-md-6" id="dropDownList">
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button type="button" id="btnTableSave" class="btn btn-sm btn-success" disabled><span class="glyphicon glyphicon-floppy-disk"></span>Save</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="labelHeader">Table Priority Details</h4><br />
+            <table id="tablePriorityDetails" class="table table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>TestBench ID</th>
+                        <th>Test Bench Name</th>
+                        <th>Table Name</th>
+                        <th>Priority</th>
+                        <th>Frequency(.in Hrs)</th>
+                        @*<th>Action</th>*@
+                    </tr>
+                </thead>
+                <tbody id="tableBdy">
+
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>

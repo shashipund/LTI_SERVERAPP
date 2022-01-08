@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f7398563bb3c477b86e5f0cc67209ffc" Name="Diagram1">
+        <EntityTypeShape EntityType="LT_SERVER_DBModel.Menu" Width="1.5" PointX="5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LT_SERVER_DBModel.Priority" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LT_SERVER_DBModel.TablePriority" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LT_SERVER_DBModel.User" Width="1.5" PointX="5" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="LT_SERVER_DBModel.FK_TablePriority_TablePriority" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LT_SERVER_DBModel.Role" Width="1.5" PointX="2.75" PointY="0.75" />
+        <AssociationConnector Association="LT_SERVER_DBModel.FK_Menu_Role" />
+        <AssociationConnector Association="LT_SERVER_DBModel.FK_User_Role" />
+        <EntityTypeShape EntityType="LT_SERVER_DBModel.TestBenchDetail" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="LT_SERVER_DBModel.TablePriorityView" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="LT_SERVER_DBModel.TableColumnInfo" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="LT_SERVER_DBModel.tblWebJobLog" Width="1.5" PointX="7.375" PointY="7.75" />
+        <EntityTypeShape EntityType="LT_SERVER_DBModel.tblErrorLog" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="LT_SERVER_DBModel.BackUpDetail" Width="1.5" PointX="0.75" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

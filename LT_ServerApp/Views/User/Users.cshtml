@@ -1,0 +1,126 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="~/Scripts/Users/User.js"></script>
+    <script src="~/Scripts/Role/Role.js"></script>
+}
+<div id="main-container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>USER MANAGEMENT</h4><hr />
+        </div>
+        <div class="col-md-5" style="border-right:1px solid gray;">
+            <h4 class="labelHeader">User Roles</h4><br />
+            <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal" style="float:right">ADD ROLE</button>
+            <table id="roleDatatable" class="table table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>RoleID</th>
+                        <th>RoleName</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+
+        <div class="col-md-7">
+            <h4 class="labelHeader">Application Users</h4><br />
+            <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#userModal" style="float:right">ADD USER</button>
+            <table id="userDatatable" class="table table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody"></tbody>
+                <tfoot>
+
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    @* Add new Role Modal Popup model *@
+    <div class="modal fade" id="myModal" role="dialog" data-backdrop='static' data-keyboard='false' style="border-radius:unset;">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Role</h4>
+                </div>
+                <div class="modal-body">
+                    <label for="txtRoleName">Role Name <code>*</code></label> <br />
+                    <input type="text" id="txtRoleName" class="form-control" required />
+                    <p><code>*.Required</code></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnRoleSave" onclick="saveRole();" class="btn btn-sm btn-success" style="border-radius:unset;"><span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* End of Role Modal Popup *@
+
+
+    @* Add new User Modal Popup model *@
+    <div class="modal fade" id="userModal" role="dialog" data-backdrop='static' data-keyboard='false'>
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add User</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="margin-bottom:20px;">
+                        <div class="col-md-6">
+                            <label for="txtName">Name <code>*</code></label> <br />
+                            <input type="text" id="txtName" class="form-control" required />
+                            @*<p><code>*.Required</code></p>*@
+                        </div>
+                        <div class="col-md-6">
+                            <label for="txtPhone">Mobile No. </label> <br />
+                            <input type="text" id="txtPhone" class="form-control" required />
+                            @*<p><code>*.Required</code></p>*@
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom:20px;">
+                        <div class="col-md-6">
+                            <label for="txtEmail">Email <code>*</code></label> <br />
+                            <input type="text" id="txtEmail" class="form-control" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="txtPassword">Default Password <code>*</code></label> <br />
+                            <input type="text" id="txtPassword" class="form-control" required />
+                            <p>(Default for other users.)</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="txtDDRole">Select Role <code>*</code></label> <br />
+                            <select id="txtDDRole" name="SelectRole" class="form-control">
+                                <option value="0">Select Role</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btnUserSave" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @* End of User Modal Popup *@
+
+</div>
+

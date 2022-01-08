@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="~/Scripts/BackUp/BackUpRestore.js"></script>
+}
+<div id="main-container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>BACKUP & RESTORE MANAGEMENT</h4><hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label class="radio-inline" for="radios-0" style="font-size: large; font-weight: 900;">
+                        <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
+                        BackUp
+                    </label>
+                    <label class="radio-inline" for="radios-1" style="font-size: large; font-weight: 900;">
+                        <input type="radio" name="radios" id="radios-1"  value="2">
+                        Restore
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="divBackUp" style="display:inline;">
+        
+        <div class="col-md-8">
+            <div class="panel panel-info">
+                <div class="panel-heading">BACKUP DATABASE</div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <label for="drpDatabaseList">Select Test Bench </label> <br />
+                        <select id="drpDatabaseList" name="SelectDatabase" class="form-control">
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-success" id="btnBackUpDatabase">BackUp Database</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="divRestore" style="display:none;">
+
+        <div class="col-md-8">
+            <div class="panel panel-info">
+                <div class="panel-heading">RESTORE DATABASE</div>
+                <div class="panel-body">
+                    <div class="col-md-12 mg-btm-20">
+                        <label for="drpTestBenchL">Select Test Bench </label> <br />
+                        <select id="drpTestBenchL" name="SelectTestBench" class="form-control">
+                            
+                        </select>
+                    </div>
+                    <div class="col-md-12 " >
+                        <label for="drpBackupDbList">Select Restore File </label> <br />
+                        <select id="drpBackupDbList" name="SelectBackUpDB" class="form-control">
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-success" id="btnRestore">Restore Database</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

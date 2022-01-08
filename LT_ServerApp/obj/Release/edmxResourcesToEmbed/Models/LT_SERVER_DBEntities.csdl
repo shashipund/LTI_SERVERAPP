@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LT_SERVER_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="MenuID" Type="Int32" Nullable="false" />
+    <Property Name="MenuName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleID" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="LT_SERVER_DBModel.FK_Menu_Role" FromRole="Menu" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Priority">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="PriorityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Frequency" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TablePriority">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="TestBenchID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PriorityID" Type="Int32" />
+    <NavigationProperty Name="TablePriority1" Relationship="Self.FK_TablePriority_TablePriority" FromRole="TablePriority" ToRole="TablePriority1" />
+    <NavigationProperty Name="TablePriority2" Relationship="Self.FK_TablePriority_TablePriority" FromRole="TablePriority1" ToRole="TablePriority" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RoleID" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="LT_SERVER_DBModel.FK_User_Role" FromRole="User" ToRole="Role" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_TablePriority_TablePriority">
+    <End Role="TablePriority" Type="Self.TablePriority" Multiplicity="1" />
+    <End Role="TablePriority1" Type="Self.TablePriority" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TablePriority">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TablePriority1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LT_SERVER_DBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Menus" EntityType="Self.Menu" />
+    <EntitySet Name="Priorities" EntityType="Self.Priority" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TablePriorities" EntityType="Self.TablePriority" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_TablePriority_TablePriority" Association="Self.FK_TablePriority_TablePriority">
+      <End Role="TablePriority" EntitySet="TablePriorities" />
+      <End Role="TablePriority1" EntitySet="TablePriorities" />
+    </AssociationSet>
+    <EntitySet Name="Roles" EntityType="LT_SERVER_DBModel.Role" />
+    <AssociationSet Name="FK_Menu_Role" Association="LT_SERVER_DBModel.FK_Menu_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Menu" EntitySet="Menus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="LT_SERVER_DBModel.FK_User_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="TestBenchDetails" EntityType="LT_SERVER_DBModel.TestBenchDetail" />
+    <FunctionImport Name="CreateTable">
+      <Parameter Name="query" Mode="In" Type="String" />
+      <Parameter Name="tableName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CreateTable1">
+      <Parameter Name="query" Mode="In" Type="String" />
+      <Parameter Name="tableName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CreateType">
+      <Parameter Name="query" Mode="In" Type="String" />
+      <Parameter Name="tableName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CreateType1">
+      <Parameter Name="query" Mode="In" Type="String" />
+      <Parameter Name="tableName" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="TablePriorityViews" EntityType="LT_SERVER_DBModel.TablePriorityView" />
+    <EntitySet Name="TableColumnInfoes" EntityType="LT_SERVER_DBModel.TableColumnInfo" />
+    <EntitySet Name="tblWebJobLogs" EntityType="LT_SERVER_DBModel.tblWebJobLog" />
+    <EntitySet Name="tblErrorLogs" EntityType="LT_SERVER_DBModel.tblErrorLog" />
+    <EntitySet Name="BackUpDetails" EntityType="LT_SERVER_DBModel.BackUpDetail" />
+  </EntityContainer>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Menus" Relationship="LT_SERVER_DBModel.FK_Menu_Role" FromRole="Role" ToRole="Menu" />
+    <NavigationProperty Name="Users" Relationship="LT_SERVER_DBModel.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Menu_Role">
+    <End Type="LT_SERVER_DBModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="LT_SERVER_DBModel.Menu" Role="Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="Menu">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Type="LT_SERVER_DBModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="LT_SERVER_DBModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TestBenchDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="TestBenchName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DBName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DBUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DBPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PortNo" Type="Int32" />
+    <Property Name="TestBenchID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="TablePriorityView">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="TestBenchID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TestBenchName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PriorityID" Type="Int32" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="PriorityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Frequency" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="DBName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TableColumnInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TestBenchID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ColumnName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DataType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TableName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblWebJobLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TestBenchID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="StartDateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EndDateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblErrorLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MethodName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ErrorMsg" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LoggedTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="BackUpDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DBName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="BackUpName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="BackUpDate" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>

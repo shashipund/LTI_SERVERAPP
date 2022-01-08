@@ -1,0 +1,144 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="~/Scripts/Reports/reports.js"></script>
+}
+<div id="main-container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>TEST BENCH REPORTS</h4>             <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label for="drpTestBench1">Select Test Bench<code>*</code></label> <br />
+            <select id="drpTestBench1" name="SelectTestBench" class="form-control"></select>
+        </div>
+        <div class="col-md-3">
+            <label for="drpTestBenchTable">Select Table<code>*</code></label> <br />
+            <select id="drpTestBenchTable" name="SelectTable" class="form-control"></select>
+        </div>
+        <div class="col-md-2">
+            <label for="fromDate">From Date<code>*</code></label> <br />
+            <div class="input-group date" data-provide="datepicker">
+                <input id="fromDate" type="text" class="form-control">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <label for="toDate">To Date<code>*</code></label> <br />
+            <div class="input-group date" data-provide="datepicker">
+                <input id="toDate" type="text" class="form-control">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-sm btn-primary" id="getBBTHVDetails" style="float:left;margin-top: 28px; ">GET REPORT</button>
+        </div>
+
+    </div> <br />
+    <div class="row">
+        <div class="col-md-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row" id="BBTHVtableDiv" style="display:none;">
+        <div class="col-md-12" style="overflow-x:scroll">
+            <table id="BBTHVDatatable" class="table table-bordered table-responsive" style="margin-bottom:20px">
+                <thead style="background-color:lightgray;">
+                    <tr>
+                        <th>ID</th>
+                        <th>Barcode</th>
+                        <th>Date/Time</th>
+                        <th>Project No</th>
+                        <th>Month Code</th>
+                        <th>Tag No</th>
+                        <th>Stack No</th>
+                        <th>Voltage</th>
+                        <th>Step 1</th>
+                        <th>Step 2</th>
+                        <th>Step 3</th>
+                        <th>Step 4</th>
+                        <th>Step 5</th>
+                        <th>Step 6</th>
+                        <th>HV Result</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="BBTHVtableBody"></tbody>
+                <tfoot>
+
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <div class="row" id="BBTIRtableDiv" style="display:none;">
+        <div class="col-md-12" style="overflow-x:scroll">
+            <table id="BBTIRDatatable" class="table table-bordered table-responsive" style="margin-bottom:20px">
+                <thead style="background-color:lightgray;">
+                    <tr>
+                        <th>ID</th>
+                        <th>Barcode</th>
+                        <th>Username</th>
+                        <th>Date/Time</th>
+                        <th>Project No</th>
+                        <th>Month Code</th>
+                        <th>Tag No</th>
+                        <th>Stack No</th>
+                        <th>Lower Limit</th>
+                        <th>Upper Limit</th>
+                        <th>Step 1</th>
+                        <th>Step 2</th>
+                        <th>Step 3</th>
+                        <th>Step 4</th>
+                        <th>Step 5</th>
+                        <th>Step 6</th>
+                        <th>Step 7</th>
+                        <th>Step 8</th>
+                        <th>Step 9</th>
+                        <th>Step 10</th>
+                        <th>Step 11</th>
+                        <th>Step 12</th>
+                        <th>Step 13</th>
+                        <th>Step 14</th>
+                        <th>Step 15</th>
+                        <th>Megger Result</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="BBTIRtableBody"></tbody>
+                <tfoot>
+
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <div class="row" id="BBTIRSettingtableDiv" style="display:none;">
+        <div class="col-md-12" style="overflow-x:scroll">
+            <table id="BBTIRSettingDatatable" class="table table-bordered table-responsive" style="margin-bottom:20px">
+                <thead style="background-color:lightgray;">
+                    <tr>
+                        <th>Test Selection</th>
+                        <th>Test Time</th>
+                        <th>Ramp Time</th>
+                        <th>Test Voltage</th>
+                        <th>HI Resistance Value</th>
+                        <th>LO Resistance Value</th>
+                    </tr>
+                </thead>
+                <tbody id="BBTIRSettingtableBody"></tbody>
+                <tfoot>
+
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
