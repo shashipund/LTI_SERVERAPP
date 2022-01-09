@@ -14,6 +14,7 @@ namespace LT_ServerApp.Models
         public string EndDateTime { get; set; }
         public string Status { get; set; }
 
-        //New prop added
+        //New prop added  fhghgfhfgh gfhh
+        //fghfjfgff
     }
 }
