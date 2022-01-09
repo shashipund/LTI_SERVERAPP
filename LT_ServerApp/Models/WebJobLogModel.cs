@@ -16,5 +16,6 @@ namespace LT_ServerApp.Models
 
         //New prop added  fhghgfhfgh gfhh
         //fghfjfgff
+        //new comment
     }
 }
