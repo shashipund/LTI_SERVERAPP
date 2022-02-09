@@ -134,6 +134,9 @@ warning 6002: The table/view 'LT_SERVER_DB.dbo.TablePriorityView' does not have 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="CreateDatabase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tableName" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="CreateTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="query" Type="varchar(max)" Mode="In" />
     <Parameter Name="tableName" Type="varchar" Mode="In" />

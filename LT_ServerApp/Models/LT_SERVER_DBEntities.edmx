@@ -139,6 +139,9 @@ warning 6002: The table/view 'LT_SERVER_DB.dbo.TablePriorityView' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="CreateDatabase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tableName" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="CreateTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="query" Type="varchar(max)" Mode="In" />
           <Parameter Name="tableName" Type="varchar" Mode="In" />
@@ -275,6 +278,9 @@ warning 6002: The table/view 'LT_SERVER_DB.dbo.TablePriorityView' does not have 
           <EntitySet Name="tblWebJobLogs" EntityType="LT_SERVER_DBModel.tblWebJobLog" />
           <EntitySet Name="tblErrorLogs" EntityType="LT_SERVER_DBModel.tblErrorLog" />
           <EntitySet Name="BackUpDetails" EntityType="LT_SERVER_DBModel.BackUpDetail" />
+          <FunctionImport Name="CreateDatabase">
+            <Parameter Name="tableName" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Role">
           <Key>
@@ -503,6 +509,7 @@ warning 6002: The table/view 'LT_SERVER_DB.dbo.TablePriorityView' does not have 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CreateDatabase" FunctionName="LT_SERVER_DBModel.Store.CreateDatabase" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

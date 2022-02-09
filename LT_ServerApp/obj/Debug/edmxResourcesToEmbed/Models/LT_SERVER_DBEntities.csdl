@@ -92,6 +92,9 @@
     <EntitySet Name="tblWebJobLogs" EntityType="LT_SERVER_DBModel.tblWebJobLog" />
     <EntitySet Name="tblErrorLogs" EntityType="LT_SERVER_DBModel.tblErrorLog" />
     <EntitySet Name="BackUpDetails" EntityType="LT_SERVER_DBModel.BackUpDetail" />
+    <FunctionImport Name="CreateDatabase">
+      <Parameter Name="tableName" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="Role">
     <Key>

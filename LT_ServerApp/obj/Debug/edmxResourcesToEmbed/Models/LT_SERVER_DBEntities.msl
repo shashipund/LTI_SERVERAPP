@@ -124,5 +124,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CreateDatabase" FunctionName="LT_SERVER_DBModel.Store.CreateDatabase" />
   </EntityContainerMapping>
 </Mapping>

@@ -90,5 +90,14 @@ namespace LT_ServerApp.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CreateType1", queryParameter, tableNameParameter);
         }
+    
+        public virtual int CreateDatabase(string tableName)
+        {
+            var tableNameParameter = tableName != null ?
+                new ObjectParameter("tableName", tableName) :
+                new ObjectParameter("tableName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CreateDatabase", tableNameParameter);
+        }
     }
 }

@@ -181,16 +181,9 @@ namespace LT_ServerApp.Services
             {
                 using (LT_SERVER_DBEntities1 entity = new LT_SERVER_DBEntities1())
                 {
-                    TestBenchDetail test = new TestBenchDetail();
-                    test.TestBenchID = _testBenchDetails.TestBenchID;
-                    test.TestBenchName = _testBenchDetails.TestBenchName;
-                    test.DBName = _testBenchDetails.DBName;
-                    test.DBPassword = _testBenchDetails.DBPassword;
-                    test.DBUser = _testBenchDetails.DBUser;
-                    test.PortNo = _testBenchDetails.PortNo;
-                    test.IPAddress = _testBenchDetails.IPAddress;
-                    entity.TestBenchDetails.Add(test);
+                    entity.TestBenchDetails.Add(_testBenchDetails);
                     result = entity.SaveChanges();
+                    
                 }
                 json.StatusCode = 200;
                 json.Message = "Success";
@@ -205,6 +198,32 @@ namespace LT_ServerApp.Services
                 return json;
             }
 
+        }
+
+        public JSONResult CreateDB(string _dbName)
+        {
+            int result = 0;
+            JSONResult json = new JSONResult();
+            try
+            {
+                using (LT_SERVER_DBEntities1 entity = new LT_SERVER_DBEntities1())
+                {
+                    entity.Database.CurrentTransaction.UnderlyingTransaction.Dispose();
+                    result =entity.CreateDatabase(_dbName);
+
+                }
+                json.StatusCode = 200;
+                json.Message = "Success";
+                return json;
+            }
+            catch (Exception ex)
+            {
+                LoggingService service = new LoggingService("TestBenchService/AddTestBench", ex.Message, System.DateTime.Now);
+                service.LogError();
+                json.StatusCode = 201;
+                json.Message = "Fail";
+                return json;
+            }
         }
 
         public JSONResult AddTablePriority(List<TablePriority> _tablePriorityDetails)

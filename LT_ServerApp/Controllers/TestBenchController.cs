@@ -43,6 +43,8 @@ namespace LT_ServerApp.Controllers
         public string InsertTestBench(TestBenchDetail testBench)
         {
             JSONResult result = _service.AddTestBench(testBench);
+            if (result.Message == "Success")
+                _service.CreateDB(testBench.DBName);
             return JsonConvert.SerializeObject(result);
         }
 
